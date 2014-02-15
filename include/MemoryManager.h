@@ -18,7 +18,6 @@
 ** of MemoryManager and it will do the rest for you.
 **
 ** Developed By : ViRaNiAc!
-** Email id     : viraniac@yahoo.com
 ** License      : Apache V2
 **
 */
@@ -47,16 +46,6 @@ typedef struct memory_manager_t {
     void (*free)(struct memory_manager_t *self, void *ptr);
     void (*cleanup)(struct memory_manager_t *self);
 } MemoryManager;
-
-//void * allocate_memory(MemoryManager *self, size_t size);
-
-//void * reallocate_memory(MemoryManager *self, void *ptr, size_t size);
-
-//void * c_allocate_memory(MemoryManager *self, size_t num, size_t size);
-
-//void free_memory(MemoryManager *self, void *ptr);
-
-//void cleanup(MemoryManager *self);
 
 MemoryManager * getMemoryManager(void);
 

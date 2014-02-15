@@ -17,7 +17,6 @@
 ** of MemoryManager and it will do the rest for you.
 **
 ** Developed By : ViRaNiAc!
-** Email id     : viraniac@yahoo.com
 ** License      : Apache V2
 **
 */
