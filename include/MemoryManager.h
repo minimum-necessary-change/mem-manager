@@ -43,8 +43,8 @@ typedef struct memory_manager_t {
     void (*(*malloc)(struct memory_manager_t *self, size_t size));
     void (*(*calloc)(struct memory_manager_t *self, size_t num, size_t size));
     void (*(*realloc)(struct memory_manager_t *self, void *ptr, size_t size));
-    void (*free)(struct memory_manager_t *self, void *ptr);
-    void (*cleanup)(struct memory_manager_t *self);
+    void (*free)(struct memory_manager_t *self, void **ptr);
+    void (*cleanup)(struct memory_manager_t **self);
 } MemoryManager;
 
 MemoryManager * getMemoryManager(void);

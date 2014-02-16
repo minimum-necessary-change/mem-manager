@@ -112,19 +112,19 @@ void * c_allocate_memory(MemoryManager *self, size_t num, size_t size){
     return tmp_address;
 }
 
-void free_memory(MemoryManager *self, void *ptr){
+void free_memory(MemoryManager *self, void **ptr){
     MemoryEntry *tmp = NULL, *prev_ptr = NULL;
     prev_ptr = NULL;
 
     // Do nothing if the ptr is a null pointer
-    if (ptr == NULL) {
+    if (*ptr == NULL) {
         return;
     }
 
     // So ptr is not a null pointer lets try to find it in the list
     tmp = self->entry_list;
 
-    while(tmp != NULL && tmp->address != ptr) {
+    while(tmp != NULL && tmp->address != *ptr) {
         prev_ptr = tmp;
         tmp = tmp->next_entry;
     }
@@ -153,21 +153,22 @@ void free_memory(MemoryManager *self, void *ptr){
 
     // List is now rearranged. Lets free the memory
     free(tmp->address);
+    *ptr = NULL;    
     free(tmp);
 }
 
-void cleanup(MemoryManager *self){
+void cleanup(MemoryManager **self){
     MemoryEntry *tmp = NULL;
 
     //lets travel through the list detaching elements from the list one by one
-    while (self->entry_list != NULL) {
-        tmp = self->entry_list;
-        self->entry_list = self->entry_list->next_entry;
+    while ((*self)->entry_list != NULL) {
+        tmp = (*self)->entry_list;
+        (*self)->entry_list = (*self)->entry_list->next_entry;
 
         // Have we reached the end of the list? if yes we need to fix the tail
         // pointer
-        if (self->entry_list == NULL) {
-            self->last_entry = NULL;
+        if ((*self)->entry_list == NULL) {
+            (*self)->last_entry = NULL;
         }
 
         //all right, lets free the entry that we detached from the list
@@ -176,7 +177,8 @@ void cleanup(MemoryManager *self){
     }
 
     // MemoryManager has lost everything. Committing suicide
-    free(self);
+    free(*self);
+    (*self) = NULL;
 }
 
 MemoryManager * getMemoryManager(void){

@@ -42,7 +42,8 @@ int main(int argc, char *argv[]){
     str = mm->malloc(mm, (length + 1) * sizeof(char));
     strcopy(str, argv[2], length);
     printf("%s\n", str);
-    mm->free(mm, str);
+    mm->free(mm, (void **) &str);
+    printf("Str is pointing at %ld\n", (long) str);
 
     str = getCopy(mm, argv[1]);
     printf("%s\n", str);
@@ -58,6 +59,7 @@ int main(int argc, char *argv[]){
     strcopy(str, argv[3], length);
     printf("%s\n", str);
 
-    mm->cleanup(mm);
+    mm->cleanup(&mm);
+    printf("MM is pointing at %ld\n", (long) mm);
     return 0;
 }
