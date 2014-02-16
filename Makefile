@@ -3,14 +3,9 @@ WORKDIR = `pwd`
 CC = gcc
 AR = ar
 LD = $(CC)
-WINDRES = windres
 
 INC = -Iinclude
 CFLAGS = -Wall
-RESINC = 
-LIBDIR = 
-LIB = 
-LDFLAGS = 
 
 CFLAGS_DEBUG = $(CFLAGS) -Wall -g
 OBJDIR_DEBUG = obj/Debug
