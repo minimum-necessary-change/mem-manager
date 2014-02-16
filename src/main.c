@@ -7,7 +7,7 @@
 ** Generally, its a big headache to allocate the memory, keep track of it and
 ** free the memory when not in use. The memory allocated by malloc function
 ** must be freed while exiting the program, otherwise it can result into memory
-** leaks and dangling pointers.
+** leaks.
 **
 ** This library provides functions to allocate and free memory that when used
 ** in code can reduce the effort required by developers to manage memory.
