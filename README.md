@@ -43,27 +43,27 @@ This is the factory function that initiates and returns the MemoryManager
 structure. This structure exposes the following method 
 
 malloc - Allocates a block of memory of the specified size. Returns a null 
--------- pointer if memory is not available
+         pointer if memory is not available
 
 	void * malloc(MemoryManager *self, size_t size);
 
 calloc - Allocates a block of memory of the specified size and initializes
--------- the memory space to zero. Returns null if the memory space is not
+         the memory space to zero. Returns null if the memory space is not
 	 available
 
 	void * calloc(MemoryManager *self, size_t num, size_t size);
 
 realloc - resizes allready allocated block of memory. Acts as malloc if the
---------- passed pointer is pointing to null.
+          passed pointer is pointing to null.
 
 	void * realloc(MemoryManager *self, void * ptr, size_t size);
 
 free - Frees the allocated memory and changes the pointer to point at null
-------
+
 	void free(MemoryManager *self, void **ptr);
 
-cleanup - Frees all the allocated memory and deallocates the memory assigned
---------- to MemoryManager as well. This makes the pointer to the Memory 
+cleanup   Frees all the allocated memory and deallocates the memory assigned
+          to MemoryManager as well. This makes the pointer to the Memory 
           Manager structure to point to null.
 
           Once this method is used, Memory Manager structure needs to be
@@ -77,6 +77,7 @@ these libraries into c projects without needing any special learning curve.
 
 Example Code
 ============
+[code]
 
 #include <string.h>
 #include "MemoryManager.h"
@@ -108,6 +109,7 @@ int main(){
     return 0;   
 }
 
+[/code]
 Developers can create multiple instances of MemoryManager if the want to seperate
 the management of memory in different sections of code. 
 
