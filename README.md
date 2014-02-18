@@ -35,41 +35,52 @@ or the function.
 
 To get an instance of the MemoryManager, following method can be used.
 
+	```c
 	#include "MemoryManager.h"
 
 	MemoryManager * getMemoryManager(void);
+	```
 
 This is the factory function that initiates and returns the MemoryManager
 structure. This structure exposes the following method 
 
 malloc - Allocates a block of memory of the specified size. Returns a null 
-         pointer if memory is not available
+pointer if memory is not available
 
+	```c
 	void * malloc(MemoryManager *self, size_t size);
+	```
 
 calloc - Allocates a block of memory of the specified size and initializes
-         the memory space to zero. Returns null if the memory space is not
-	 available
+the memory space to zero. Returns null if the memory space is not available
 
+	```c
 	void * calloc(MemoryManager *self, size_t num, size_t size);
+	```
 
 realloc - resizes allready allocated block of memory. Acts as malloc if the
-          passed pointer is pointing to null.
+passed pointer is pointing to null.
 
+	```c
 	void * realloc(MemoryManager *self, void * ptr, size_t size);
+	```
 
 free - Frees the allocated memory and changes the pointer to point at null
 
+	```c
 	void free(MemoryManager *self, void **ptr);
+	```
 
-cleanup   Frees all the allocated memory and deallocates the memory assigned
-          to MemoryManager as well. This makes the pointer to the Memory 
-          Manager structure to point to null.
+cleanup - Frees all the allocated memory and deallocates the memory assigned
+to MemoryManager as well. This makes the pointer to the Memory Manager 
+structure to point to null.
 
-          Once this method is used, Memory Manager structure needs to be
-          initialized again for any further use.
+Once this method is used, Memory Manager structure needs to be initialized 
+again for any further use.
 
+	```c
 	void cleanup(MemoryManager **self);
+	```
 
 The name and prototypes of these functions are purposefully kept similar to
 the standard c libraries memory management functions to make it easy to use
@@ -77,8 +88,8 @@ these libraries into c projects without needing any special learning curve.
 
 Example Code
 ============
-[code]
 
+```c
 #include <string.h>
 #include "MemoryManager.h"
 
@@ -109,7 +120,7 @@ int main(){
     return 0;   
 }
 
-[/code]
+```
 Developers can create multiple instances of MemoryManager if the want to seperate
 the management of memory in different sections of code. 
 
